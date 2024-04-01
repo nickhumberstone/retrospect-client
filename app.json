@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "quotd",
+    "slug": "quotd",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./src/assets/icons/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./src/assets/icons/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nickhumberstone.questionanswer"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/icons/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.nickhumberstone.questionanswer"
+    },
+    "web": {
+      "favicon": "./src/assets/icons/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "75d08780-7494-4738-97d1-19856d9d0675"
+      }
+    },
+    "plugins": [
+      [
+        "react-native-auth0",
+        {
+          "domain": "dev-questionanswer.uk.auth0.com"
+        }
+      ]
+    ],
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/75d08780-7494-4738-97d1-19856d9d0675"
+    }
+  }
+}
