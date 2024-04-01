@@ -10,15 +10,13 @@ export default function QuestionScreen() {
   const [loading, setLoading] = useState(true);
 const {user} = useAuth0();
 const user_id = user.sub;
-// ServerURL to be kept private using variables in future
-const serverURL = "https://questionanswer-a72d97c4c83c.herokuapp.com"
 
 useEffect(() => {
   fetchDailyQuestion();
 }, [])
 
   const fetchDailyQuestion = async() => {
-    const response = await fetch(`${serverURL}/dailyQuestion`)
+    const response = await fetch(`${SERVER_URL}/dailyQuestion`)
     const output = await response.json()
   setQuestion(output[0].dailyQuestion)
   setLoading(false)
@@ -27,7 +25,7 @@ useEffect(() => {
       const postAnswer = async() => {
       const data = {"user_id": user.sub, "text_content" : answer}
       console.log("Post request initiated, to /add, with body of: " + data)
-      const response = await fetch(`${serverURL}/add`, {
+      const response = await fetch(`${SERVER_URL}/add`, {
         method: "POST",
         headers: {
           "Accept" : "application/json",

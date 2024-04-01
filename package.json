@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "dev": "SERVER_URL=https://retrospect.loca.lt npx expo start --tunnel",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",
