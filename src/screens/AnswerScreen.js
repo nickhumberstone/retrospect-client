@@ -1,18 +1,16 @@
 import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native'
 import { useEffect, useState } from 'react';
-import ResponseCard from '../components/ResponseCardOther';
+import ResponseCardOther from '../components/ResponseCardOther';
 import { useAuth0 } from 'react-native-auth0';
 
 export default function AnswerScreen() {
-
+  const {user} = useAuth0();
+  const user_id = user.sub;
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const {user} = useAuth0();
-  const user_id = user.sub;
-  
   const fetchData = async(user) => {
-    console.log("fetchData triggered")
+    console.log("dailyAnswers triggered")
         const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
         const answers = await response.json();
     setData(answers)
