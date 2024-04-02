@@ -1,6 +1,7 @@
 import {ScrollView, View, Text, Image, KeyboardAvoidingView, TextInput, TouchableOpacity} from 'react-native'
 import { useState, useEffect } from 'react';
 import { useAuth0 } from 'react-native-auth0';
+import DailyQuestionCard from '../components/DailyQuestionCard';
 
 export default function QuestionScreen() {
 
@@ -45,9 +46,8 @@ useEffect(() => {
         <Image className="aspect-square h-80" source={require('../assets/images/womanWriting.jpg')} />
         
         
-        <KeyboardAvoidingView className="p-4 bg-[#627bb1] shadow-lg shadow-black flex rounded-xl">
-    {loading && (<Text>~ Fetching today's question... ~</Text>)}
-    {question && (<Text className="text-center text-white p-2 text-3xl font-bold">{question}</Text>)}
+    <DailyQuestionCard/>
+        <KeyboardAvoidingView className="p-4 bg-[#627bb1] shadow-lg shadow-black flex rounded-xl w-4/5">
     <TextInput
     className="bg-blue-200 my-2 py-6 rounded-lg text-xl text-center"
     placeholder='Answer here'
