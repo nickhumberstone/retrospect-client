@@ -13,7 +13,7 @@
     },
     "preview": {
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://questionanswer-a72d97c4c83c.herokuapp.com"
+        "EXPO_PUBLIC_API_URL": "https://retrospectapp-e8b77fc01179.herokuapp.com/"
       },
       "distribution": "internal",
       "android": {
@@ -23,7 +23,7 @@
     },
     "production": {
       "env": {
-        "EXPO_PUBLIC_API_URL": "https://questionanswer-a72d97c4c83c.herokuapp.com"
+        "EXPO_PUBLIC_API_URL": "https://retrospectapp-e8b77fc01179.herokuapp.com/"
       },
       "channel": "production"
     }
