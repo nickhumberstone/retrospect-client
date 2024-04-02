@@ -15,8 +15,9 @@ useEffect(() => {
   fetchDailyQuestion();
 }, [])
 
+//works if I just change fetch to https://retrospect.loca.lt/dailyquestion
   const fetchDailyQuestion = async() => {
-    const response = await fetch(`${SERVER_URL}/dailyQuestion`)
+    const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyquestion`)
     const output = await response.json()
   setQuestion(output[0].dailyQuestion)
   setLoading(false)
@@ -25,7 +26,7 @@ useEffect(() => {
       const postAnswer = async() => {
       const data = {"user_id": user.sub, "text_content" : answer}
       console.log("Post request initiated, to /add, with body of: " + data)
-      const response = await fetch(`${SERVER_URL}/add`, {
+      const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/add`, {
         method: "POST",
         headers: {
           "Accept" : "application/json",

@@ -13,7 +13,7 @@ export default function AnswerScreen() {
   
   const fetchData = async(user) => {
     console.log("fetchData triggered")
-        const response = await fetch(`https://questionanswer-a72d97c4c83c.herokuapp.com/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
+        const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
         const answers = await response.json();
     setData(answers)
     setLoading(false)

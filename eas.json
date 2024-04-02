@@ -12,6 +12,9 @@
       "channel": "development"
     },
     "preview": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://questionanswer-a72d97c4c83c.herokuapp.com"
+      },
       "distribution": "internal",
       "android": {
         "buildType": "apk"
@@ -19,6 +22,9 @@
       "channel": "preview"
     },
     "production": {
+      "env": {
+        "EXPO_PUBLIC_API_URL": "https://questionanswer-a72d97c4c83c.herokuapp.com"
+      },
       "channel": "production"
     }
   },
