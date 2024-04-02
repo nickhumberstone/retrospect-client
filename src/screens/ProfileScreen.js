@@ -2,6 +2,7 @@ import {View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { useAuth0 } from 'react-native-auth0'
 import { useState, useEffect } from 'react';
 import ResponseCardUser from '../components/ResponseCardUser';
+import DailyQuestionCard from '../components/DailyQuestionCard';
 
 
 
@@ -62,7 +63,7 @@ const fetchDailyQuestion = async() => {
         <Text className="text-3xl p-2 text-white">{profiledata.name}</Text>
         {user && <Text className="text-xl p-1 text-white">Logged in as {user.name}</Text>}
         </View>
-        {question && (<Text className="text-center p-2 text-3xl font-bold">{question}</Text>)}
+        <DailyQuestionCard/>
         {loading && (
         <Text className="text-center">Responses are loading!</Text>
       )}
