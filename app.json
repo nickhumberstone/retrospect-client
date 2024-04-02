@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "quotd",
-    "slug": "quotd",
+    "name": "retrospectapp",
+    "slug": "retrospectapp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./src/assets/icons/icon.png",
