@@ -1,16 +1,16 @@
 import {View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { useAuth0 } from 'react-native-auth0'
 import { useState, useEffect } from 'react';
-import ResponseCard from '../components/ResponseCardOther';
+import ResponseCardUser from '../components/ResponseCardUser';
 
 
 
 export default function ProfileScreen() {
-  const {user, error} = useAuth0();
+  const {user} = useAuth0();
   const user_id = user.sub;
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [question, setQuestion] = useState([]);
 
   const profiledata = {
     name: "Untitled User",
@@ -34,13 +34,24 @@ export default function ProfileScreen() {
     console.log("fetchMyAnswers triggered")
         const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/myanswers?`+ new URLSearchParams({user_id : user_id}))
         const answers = await response.json();
+        console.log(answers)
+      //  console.log(`${process.env.EXPO_PUBLIC_SERVER_URL}/myanswers?`+ new URLSearchParams({user_id : user_id}))
     setData(answers)
     setLoading(false)
   };
 
+const fetchDailyQuestion = async() => {
+      const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyquestion`)
+      const output = await response.json()
+    setQuestion(output[0].dailyQuestion)
+  };
+
   useEffect(() => {
     fetchData();
+    fetchDailyQuestion();
   }, [])
+  
+    
 
     return (
 <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
@@ -51,18 +62,21 @@ export default function ProfileScreen() {
         <Text className="text-3xl p-2 text-white">{profiledata.name}</Text>
         {user && <Text className="text-xl p-1 text-white">Logged in as {user.name}</Text>}
         </View>
-
+        {question && (<Text className="text-center p-2 text-3xl font-bold">{question}</Text>)}
+        {loading && (
+        <Text className="text-center">Responses are loading!</Text>
+      )}
         {data && (
           data.map((e) =>
-          <ResponseCard
+          <ResponseCardUser
           response={e.text_content}
-          user={e.user_id}
+          date={e.created_datetime}
           key={e.response_id}
           />
           ))}
 
 <View className="buttonContainer flex-1 flex-row mx-10 w-sreen">
-          <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
+          <TouchableOpacity className="hidden mt-6 shadow-lg rounded-lg bg-blue-200 m-1 h-10 justify-center items-center" onPress={editProfile}><Text>Edit Profile</Text></TouchableOpacity>
         <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
         <TouchableOpacity
       onPress={fetchData}

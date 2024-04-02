@@ -15,7 +15,6 @@ useEffect(() => {
   fetchDailyQuestion();
 }, [])
 
-//works if I just change fetch to https://retrospect.loca.lt/dailyquestion
   const fetchDailyQuestion = async() => {
     const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyquestion`)
     const output = await response.json()
