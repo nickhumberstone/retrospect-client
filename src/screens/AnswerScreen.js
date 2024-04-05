@@ -1,8 +1,9 @@
 import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native'
-import { useEffect, useState } from 'react';
+import { useState, useCallback } from 'react';
 import ResponseCardCommunity from '../components/ResponseCardCommunity';
 import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function AnswerScreen() {
   const {user} = useAuth0();
@@ -18,9 +19,13 @@ export default function AnswerScreen() {
     setLoading(false)
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      fetchData();
+    }, [user.sub])
+  );
+
+  
 
     return (
       <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">

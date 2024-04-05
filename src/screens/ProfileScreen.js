@@ -1,9 +1,9 @@
 import {View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
 import { useAuth0 } from 'react-native-auth0'
-import { useState, useEffect } from 'react';
+import { useState, useCallback } from 'react';
 import ResponseCardUser from '../components/ResponseCardUser';
 import DailyQuestionCard from '../components/DailyQuestionCard';
-
+import { useFocusEffect } from '@react-navigation/native';
 
 
 export default function ProfileScreen() {
@@ -47,10 +47,12 @@ const fetchDailyQuestion = async() => {
     setQuestion(output[0].dailyQuestion)
   };
 
-  useEffect(() => {
+  useFocusEffect(
+    useCallback(() => {
     fetchData();
-    fetchDailyQuestion();
-  }, [])
+     fetchDailyQuestion();
+    }, [user.sub])
+  );
   
     
 

@@ -2,6 +2,7 @@ import {ScrollView, View, Text, Image, KeyboardAvoidingView, TextInput, Touchabl
 import { useState, useEffect } from 'react';
 import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function QuestionScreen() {
 
