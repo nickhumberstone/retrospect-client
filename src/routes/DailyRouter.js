@@ -1,16 +1,20 @@
 import AnswerStack from '../stacks/AnswerStack';
 import QuestionStack from '../stacks/QuestionStack'
 import { useAuth0 } from 'react-native-auth0';
-import { useEffect, useState } from 'react';
+import { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
-export default function Router() {
+export default function DailyRouter() {
+  console.log("dailyrouter popped off!")
   const {user} = useAuth0();
   const [answeredDaily, setAnsweredDaily] = useState([])
 
-  useEffect(() => {
-    setAnsweredDaily(false)
+  useFocusEffect(
+    useCallback(() => {
+      setAnsweredDaily(false)
     checkAnswered();
-  }, [])
+    }, [user.sub])
+  );
 
   const checkAnswered = async() => {
     console.log("checkAnswered triggered")
