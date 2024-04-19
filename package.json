@@ -4,6 +4,7 @@
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "dev": "npx expo start --tunnel",
+    "dev-server": "set EXPO_PUBLIC_SERVER_URL=https://retrospectapp-e8b77fc01179.herokuapp.com/ && npx expo start --tunnel",
     "start": "expo start",
     "android": "expo run:android",
     "ios": "expo run:ios",

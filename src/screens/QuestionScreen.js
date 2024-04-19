@@ -11,7 +11,6 @@ export default function QuestionScreen() {
   const [question, setQuestion] = useState([]);
   const [loading, setLoading] = useState(true);
 const {user} = useAuth0();
-const user_id = user.sub;
 
 useEffect(() => {
   fetchDailyQuestion();
