@@ -4,7 +4,7 @@ import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 import { useFocusEffect } from '@react-navigation/native';
 
-export default function QuestionScreen({ latestResponse }) {
+export default function QuestionScreen({ latestResponse, setResponse }) {
 
   const [answer, setAnswer] = useState("");
   const [responseSubmitted, setResponseSubmitted] = useState(false)
@@ -36,16 +36,15 @@ useEffect(() => {
       });
       setResponseSubmitted(true);
      console.log("Response sent");
+     setResponse();
     };
 
     return (
 <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-10">
         <Text className="text-4xl text-center text-[#627bb1] font-bold">Daily Question</Text>
-
         <Image className="aspect-square h-80" source={require('../assets/images/womanWriting.jpg')} />
-        
-        
+              
     <DailyQuestionCard/>
         <KeyboardAvoidingView className="p-4 bg-[#627bb1] shadow-lg shadow-black flex rounded-xl w-4/5">
     <TextInput
