@@ -4,7 +4,7 @@ import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 import { useFocusEffect } from '@react-navigation/native';
 
-export default function QuestionScreen() {
+export default function QuestionScreen({ latestResponse }) {
 
   const [answer, setAnswer] = useState("");
   const [responseSubmitted, setResponseSubmitted] = useState(false)
@@ -66,6 +66,7 @@ useEffect(() => {
   </KeyboardAvoidingView>
 
         <Text className="pt-1 px-1 text-gray-500 text-sm text-center">Answer the question above to enter the pool. Your answer must be 140 characters of less.</Text>
+        <Text>Latest response was {latestResponse}</Text>
         </View>
       </ScrollView>
     );
