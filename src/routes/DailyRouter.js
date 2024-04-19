@@ -5,10 +5,12 @@ import { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
 
 export default function DailyRouter() {
-  const {user} = useAuth0();
-const [latestResponse, setLatestResponse] = useState("");
-const answeredToday = false;
+const {user} = useAuth0();
+const [latestResponse, setLatestResponse] = useState("EXAMPLELATESTRESPONSE");
+const [answeredToday, setAnsweredToday] = useState(false);
 
+console.log("Latest response = ", latestResponse)
+console.log("Have they answered today? ",answeredToday)
 
   // useFocusEffect(
   //   useCallback(() => {
@@ -28,7 +30,13 @@ const answeredToday = false;
   // const answeredDaily = true;
     return (
         <>
-          {!answeredToday ? <QuestionStack/> : <AnswerStack/>}
+          {!answeredToday ? 
+          <QuestionStack 
+          latestResponse = {latestResponse}
+          setLatestResponse={response => setLatestResponse(response)}
+          /> 
+          : 
+          <AnswerStack/>}
         </>
       );
 }
