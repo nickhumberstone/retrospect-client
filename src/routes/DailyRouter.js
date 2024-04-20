@@ -6,13 +6,13 @@ import { useFocusEffect } from '@react-navigation/native';
 
 export default function DailyRouter() {
 const {user} = useAuth0();
-const [latestResponse, setLatestResponse] = useState("");
+const [latestResponse, setLatestResponse] = useState("9999999999");
 const [answeredToday, setAnsweredToday] = useState(false);
 
 const currentDate = new Date().toISOString().slice(0,10)
-const latestResponseDate = latestResponse.slice(0,10)
+console.log("latest response: ",latestResponse)
 console.log("currentDate = ",currentDate)
-console.log("latestResponseDate = ",latestResponseDate)
+console.log("latestResponse = ", latestResponse)
 
 function setResponse(response) {
   setLatestResponse(response)
@@ -25,8 +25,9 @@ function setResponse(response) {
 useFocusEffect(
   useCallback(() => {
     console.log("App became focussed");
+    console.log("Server URL is pointing to: ",process.env.EXPO_PUBLIC_SERVER_URL)
 
-if(currentDate === latestResponseDate){
+if(currentDate === latestResponse){
   console.log("LastResponse was TODAY!")
   setAnsweredToday(true)
 } else {
@@ -41,11 +42,10 @@ if(currentDate === latestResponseDate){
   const checkLatestResponse = async() => {
     console.log("latest response is being fetched")
         const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/mylatestresponse?`+ new URLSearchParams({user_id : user.sub}))
-        const answers = await response.json();
-        console.log("answers done")
-        setLatestResponse(answers[0].created_datetime)
-        
-        if (currentDate === answers[0].created_datetime.slice(0,10)){
+        const answers = await response.json()
+        console.log("answers: ",answers)
+        setLatestResponse(answers[0].created_datetime.slice(0,10))
+        if (currentDate === latestResponse){
           console.log("dates match")
           setAnsweredToday(true)
         } else {
@@ -59,7 +59,7 @@ if(currentDate === latestResponseDate){
         <>
           {!answeredToday ? 
           <QuestionStack 
-          latestResponse = {latestResponse}
+         // latestResponse = {latestResponse}
           setResponse={setResponse}
           /> 
           : 

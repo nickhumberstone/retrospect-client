@@ -19,6 +19,7 @@ useEffect(() => {
   const fetchDailyQuestion = async() => {
     const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyquestion`)
     const output = await response.json()
+    console.log("Today's question is: ",output[0].dailyQuestion)
   setQuestion(output[0].dailyQuestion)
   setLoading(false)
 };
