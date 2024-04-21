@@ -1,1 +1,0 @@
-EXPO_PUBLIC_SERVER_URL=https://retrospect.loca.lt
