@@ -73,7 +73,7 @@ const fetchDailyQuestion = async() => {
           data.map((e) =>
           <ResponseCardUser
           response={e.text_content}
-          date={e.created_datetime}
+          date={e.date_created}
           key={e.response_id}
           />
           ))}
