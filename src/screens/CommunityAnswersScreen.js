@@ -5,7 +5,7 @@ import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 import { useFocusEffect } from '@react-navigation/native';
 
-export default function AnswerScreen() {
+export default function CommunityAnswersScreen() {
   const {user} = useAuth0();
   const user_id = user.sub;
   const [data, setData] = useState([]);
@@ -30,7 +30,7 @@ export default function AnswerScreen() {
     return (
       <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-10">
-        <Text className="text-3xl text-center text-[#627bb1] font-bold">Community responses</Text>
+        <Text className="text-3xl text-center text-[#627bb1] font-bold">Community Answers</Text>
           <Image className="aspect-square h-80" source={require('../assets/images/womanReadingBook.jpg')} />
           <DailyQuestionCard/>
         {loading && (
