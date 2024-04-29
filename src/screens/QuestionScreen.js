@@ -3,7 +3,7 @@ import { useState} from 'react';
 import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 
-export default function QuestionScreen({setResponse}) {
+export default function QuestionScreen({setAnswered}) {
   const [answer, setAnswer] = useState("");
   const {user} = useAuth0()
   
@@ -17,7 +17,7 @@ export default function QuestionScreen({setResponse}) {
         },
         body: JSON.stringify(data)
       });
-      setResponse();
+      setAnswered();
      console.log("/addAnswer: " + JSON.stringify(data))
     };
 

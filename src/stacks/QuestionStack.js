@@ -1,7 +1,7 @@
 import QuestionScreen from '../screens/QuestionScreen';
 
-export default function AppStack({latestResponse, setResponse}) {
+export default function AppStack({setAnswered}) {
   return (
-    <QuestionScreen latestResponse={latestResponse} setResponse={setResponse}/>    
+    <QuestionScreen setAnswered={setAnswered}/>    
   );
 }
