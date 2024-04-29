@@ -45,7 +45,7 @@ if(currentDate === latestResponse){
         console.log("TIME: ",time)
         
         //.slice(0,10))
-        setLatestResponse(answers[0])
+        setLatestResponse(answers[0].date_created.slice(0,10))
         if (currentDate === latestResponse){
           console.log("dates match") 
           setAnsweredToday(true)
@@ -53,7 +53,6 @@ if(currentDate === latestResponse){
           console.log("dates dont match")
           setAnsweredToday(false)
         }
-
   };
 
    return (
