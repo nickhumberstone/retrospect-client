@@ -1,33 +1,15 @@
-import {ScrollView, View, Text, Image, KeyboardAvoidingView, TextInput, TouchableOpacity} from 'react-native'
-import { useState, useEffect } from 'react';
+import {ScrollView, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
+import { useState} from 'react';
 import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
-import { useFocusEffect } from '@react-navigation/native';
 
-export default function QuestionScreen({ latestResponse, setResponse }) {
-
+export default function QuestionScreen({setResponse}) {
   const [answer, setAnswer] = useState("");
-  const [responseSubmitted, setResponseSubmitted] = useState(false)
-  const [question, setQuestion] = useState([]);
-  const [loading, setLoading] = useState(true);
-const {user} = useAuth0();
-
-useEffect(() => {
-  fetchDailyQuestion();
-}, [])
-
-  const fetchDailyQuestion = async() => {
-    const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyquestion`)
-    const output = await response.json()
-    console.log("Today's question is: ",output[0].dailyQuestion)
-  setQuestion(output[0].dailyQuestion)
-  setLoading(false)
-};
-
-      const postAnswer = async() => {
+  const {user} = useAuth0()
+  
+  const postAnswer = async() => {
       const data = {"user_id": user.sub, "text_content" : answer}
-      console.log("Post request initiated, to /add, with body of: " + data)
-      const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/add`, {
+      await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/add`, {
         method: "POST",
         headers: {
           "Accept" : "application/json",
@@ -35,19 +17,16 @@ useEffect(() => {
         },
         body: JSON.stringify(data)
       });
-      setResponseSubmitted(true);
-     console.log("Response sent");
-     setResponse();
+      setResponse();
+     console.log("/addAnswer: " + JSON.stringify(data))
     };
 
     return (
-<ScrollView keyboardVerticalOffset={500} contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
+<ScrollView keyboardShouldPersistTaps={'handled'} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-10">
-        {/* <Text className="text-4xl text-center text-[#627bb1] font-bold">Daily Question</Text> */}
-        <Image className="aspect-square h-80" source={require('../assets/images/womanWriting.jpg')} />
-        <DailyQuestionCard/>      
-    
-        <KeyboardAvoidingView keyboardVerticalOffset={500} className="p-4 bg-[#627bb1] shadow-lg shadow-black flex flex-row rounded-xl w-9/10 gap-2">
+        <Image className="aspect-square h-80" source={require('../assets/images/womanWriting.jpg')}/>
+        <DailyQuestionCard/>
+        <View className="p-4 bg-[#627bb1] shadow-lg shadow-black flex flex-row rounded-xl w-9/10 gap-2">
     <TextInput
     className="bg-blue-200 py-6 rounded-lg text-xl text-center w-4/5"
     placeholder='Answer here'
@@ -58,13 +37,12 @@ useEffect(() => {
     />
 <TouchableOpacity
     onPress={postAnswer}
-    className="p-2 bg-white rounded-lg flex-1">
-<Text className="text-center text-xl text-[#667bb1]">{responseSubmitted ? "🎇" : "📩"}</Text>
+    className="p-2 bg-white rounded-lg flex-1 justify-center items-center">
+<Text className="text-xl">🖊</Text>
       </TouchableOpacity>
-  </KeyboardAvoidingView>
+  </View>
 
-        <Text className="pt-1 px-1 text-gray-500 text-sm text-center">Answer the question above to enter the pool. Your answer must be 140 characters of less.</Text>
-        <Text>Latest response was {latestResponse}</Text>
+        <Text className="pt-1 px-1 text-gray-500 text-sm text-center">Answer the question above see your previous answers, and answers from the community. Your answer must be 140 characters of less.</Text>
         </View>
       </ScrollView>
     );

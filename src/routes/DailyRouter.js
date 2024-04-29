@@ -6,32 +6,29 @@ import { useFocusEffect } from '@react-navigation/native';
 
 export default function DailyRouter() {
 const {user} = useAuth0();
-const [latestResponse, setLatestResponse] = useState("9999999999");
+const [latestResponse, setLatestResponse] = useState("noValueHere");
 const [answeredToday, setAnsweredToday] = useState(false);
 
 const currentDate = new Date().toISOString().slice(0,10)
-console.log("latest response: ",latestResponse)
-console.log("currentDate = ",currentDate)
-console.log("latestResponse = ", latestResponse)
+console.log("latest response: ", latestResponse)
+console.log("currentDate = ", currentDate)
+
 
 function setResponse(response) {
   setLatestResponse(response)
   setAnsweredToday(true)
-  console.log(latestResponse)
- // console.log("answeredtoday? ", answeredToday)
 }
 
 // Whenever app becomes in focus, fetch the latest response for that user. Compare the timestamp to the current day to evaluate if they have answered today. Show QuestionStack if false, show Answerstack if true.
 useFocusEffect(
   useCallback(() => {
-    console.log("App became focussed");
     console.log("Server URL is pointing to: ",process.env.EXPO_PUBLIC_SERVER_URL)
 
 if(currentDate === latestResponse){
-  console.log("LastResponse was TODAY!")
+  console.log("User has answered today")
   setAnsweredToday(true)
 } else {
-  console.log("ALERT! NEEDS TO ANSWER Q!")
+  console.log("User has not answered today")
   checkLatestResponse();
 }
 
@@ -43,10 +40,14 @@ if(currentDate === latestResponse){
     console.log("latest response is being fetched")
         const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/mylatestresponse?`+ new URLSearchParams({user_id : user.sub}))
         const answers = await response.json()
-        console.log("answers: ",answers)
-        setLatestResponse(answers[0].created_datetime.slice(0,10))
+        const time = new Date(answers[0].date_created).toISOString()
+        console.log("answers: ",answers[0].date_created)
+        console.log("TIME: ",time)
+        
+        //.slice(0,10))
+        setLatestResponse(answers[0])
         if (currentDate === latestResponse){
-          console.log("dates match")
+          console.log("dates match") 
           setAnsweredToday(true)
         } else {
           console.log("dates dont match")
@@ -57,13 +58,7 @@ if(currentDate === latestResponse){
 
    return (
         <>
-          {!answeredToday ? 
-          <QuestionStack 
-         // latestResponse = {latestResponse}
-          setResponse={setResponse}
-          /> 
-          : 
-          <AnswerStack/>}
+          {!answeredToday ? <QuestionStack setResponse={setResponse}/> : <AnswerStack/>}
         </>
       );
 }

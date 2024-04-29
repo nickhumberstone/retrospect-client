@@ -1,16 +1,16 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import QuestionScreen from '../screens/QuestionScreen';
-import AnswerScreen from '../screens/AnswerScreen';
-import ProfileScreen from '../screens/ProfileScreen';
+
+import CommunityAnswersScreen from '../screens/CommunityAnswersScreen';
+import MyAnswersScreen from '../screens/MyAnswersScreen';
 
 
 const Tab = createBottomTabNavigator();
 
 export default function AppStack() {
   return (
-    <Tab.Navigator initialRouteName='Question' screenOptions={{headerShown:false}}>
-      <Tab.Screen name="Answer" component={AnswerScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Navigator screenOptions={{headerShown:false}}>
+      <Tab.Screen name="Community Answers" component={CommunityAnswersScreen} />
+      <Tab.Screen name="My Answers" component={MyAnswersScreen} />
     </Tab.Navigator>    
   );
 }
