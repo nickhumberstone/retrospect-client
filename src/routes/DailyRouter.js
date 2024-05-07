@@ -1,5 +1,6 @@
 import AnswerStack from '../stacks/AnswerStack';
 import QuestionStack from '../stacks/QuestionStack'
+import LoadingScreen from '../screens/LoadingScreen';
 import { useAuth0 } from 'react-native-auth0';
 import { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
@@ -7,6 +8,7 @@ import { useFocusEffect } from '@react-navigation/native';
 export default function DailyRouter() {
 const {user} = useAuth0();
 const [answeredToday, setAnsweredToday] = useState(false);
+const [loading, setLoading] = useState(true);
 
 // Whenever app becomes in focus, fetch the latest response for that user. Compare the timestamp to the current day to evaluate if they have answered today. Show QuestionStack if false, show Answerstack if true.
 function setAnswered(){
@@ -25,11 +27,17 @@ useFocusEffect(
         const answers = await response.json()
         console.log("DidTheyAnswerToday? ",answers)
         setAnsweredToday(answers)
+        setLoading(false)
   };
 
    return (
         <>
-          {!answeredToday ? <QuestionStack setAnswered={setAnswered}/> : <AnswerStack/>}
+        {!loading ? 
+        !answeredToday ?
+            <QuestionStack setAnswered={setAnswered}/> 
+            : <AnswerStack/>
+        : <LoadingScreen/>}
+          {/* {!answeredToday ? <QuestionStack setAnswered={setAnswered}/> : <AnswerStack/>} */}
         </>
       );
 }
