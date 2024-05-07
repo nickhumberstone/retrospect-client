@@ -32,6 +32,9 @@ useFocusEffect(
 
    return (
         <>
+
+        {/* <LoadingScreen/> */}
+
         {!loading ? 
         !answeredToday ?
             <QuestionStack setAnswered={setAnswered}/> 
