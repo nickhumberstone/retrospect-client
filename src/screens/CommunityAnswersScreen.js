@@ -44,15 +44,9 @@ export default function CommunityAnswersScreen() {
         key={e.response_id}
         />
       ))}
-
-      <TouchableOpacity
-      onPress={fetchData}
-      className="p-2 m-2 bg-blue-200 rounded-lg">
-        <Text className="text-center text-lg p-2">Click to refresh responses</Text>
-        </TouchableOpacity>
-
+      {!data ? <></>:<ResponseCardCommunity response={"There are currently no responses. Please check back later."}/>
+      }
       </View>
       </ScrollView>
-        
     );
   }
