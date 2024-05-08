@@ -1,17 +1,18 @@
-import {View, Text, Image, TouchableOpacity, ScrollView } from 'react-native'
+import {View, Text, Image, TouchableOpacity, ScrollView, Linking } from 'react-native'
 import { useAuth0 } from 'react-native-auth0'
 import { useState, useCallback } from 'react';
 import ResponseCardUser from '../components/ResponseCardUser';
 import DailyQuestionCard from '../components/DailyQuestionCard';
-import { useFocusEffect } from '@react-navigation/native';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
 
-export default function MyAnswersScreen() {
+export default function MyAnswersScreen({navigation}) {
   const {user} = useAuth0();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const {clearSession} = useAuth0();
+
   const logout = async () => {
       try {
           await clearSession();
@@ -19,6 +20,10 @@ export default function MyAnswersScreen() {
           console.log(e);
       }
   };
+
+  const feedback = () => {
+    useNavigation.navigate()
+  }
 
   const fetchData = async() => {
     const user_id = user.sub
@@ -39,7 +44,7 @@ export default function MyAnswersScreen() {
 <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-20">
         <Text className="text-3xl text-center text-[#627bb1] font-bold">My Answers</Text>
-        <Image className="aspect-square h-80" source={require('../assets/images/womanSearchingBook.jpg')}/>
+        <Image className="aspect-square h-80" source={require('../assets/images/readingbook.png')}/>
         
         <DailyQuestionCard/>
         {loading && (<Text className="text-center">Responses are loading!</Text>)}
@@ -53,6 +58,7 @@ export default function MyAnswersScreen() {
         </View>
 <View className="buttonContainer flex-1 flex-row mx-10">
         <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
+        <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center" onPress={() => Linking.openURL(`https://humberstone.uk/contact`)}><Text>Feedback</Text></TouchableOpacity>
         </View>
         </View>
       </ScrollView>
