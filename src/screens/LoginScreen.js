@@ -17,7 +17,7 @@ const login = async () => {
         <View>
           <View className="flex-1 flex items-center justify-center mx-6 mt-20">
           <Text className="text-3xl text-center text-[#627bb1] font-bold">Welcome to Retrospect</Text>
-        <Image className="aspect-square h-80" source={require('../assets/images/womanSearchingBook.jpg')}/>
+        <Image className="aspect-square h-80" source={require('../assets/images/holdingform.png')}/>
         <View className="p-4 bg-[#627bb1] shadow-lg shadow-black flex rounded-xl">
         <Text className="py-2 mb-2 text-3xl text-center text-white font-bold">What is Retrospect?</Text>
         <Text className="text-lg mb-4 text-white">Every day you will be asked a question.</Text>

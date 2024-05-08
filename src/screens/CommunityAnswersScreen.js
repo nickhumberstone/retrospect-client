@@ -31,7 +31,7 @@ export default function CommunityAnswersScreen() {
       <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
         <View className="flex-1 flex items-center justify-center mx-6 mt-10">
         <Text className="text-3xl text-center text-[#627bb1] font-bold">Community Answers</Text>
-          <Image className="aspect-square h-80" source={require('../assets/images/womanReadingBook.jpg')} />
+          <Image className="aspect-square h-80" source={require('../assets/images/readingmanybooks.png')} />
           <DailyQuestionCard/>
         {loading && (
         <Text className="text-center">Responses are loading!</Text>
