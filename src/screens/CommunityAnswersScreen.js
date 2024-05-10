@@ -25,7 +25,11 @@ export default function CommunityAnswersScreen() {
     }, [user.sub])
   );
 
-  
+console.log("Data is: ",data)
+console.log('Data truthiness is: ', !data)
+if (data == []) {console.log("data is blank rn")}
+if (data.length == 0){console.log("HJSIEIDJ")}
+
 
     return (
       <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
@@ -44,8 +48,8 @@ export default function CommunityAnswersScreen() {
         key={e.response_id}
         />
       ))}
-      {!data ? <></>:<ResponseCardCommunity response={"There are currently no responses. Please check back later."}/>
-      }
+      
+      {data.length == 0 ? <ResponseCardCommunity response={"There are currently no responses. Please check back later."}/> : <></> }
       </View>
       </ScrollView>
     );

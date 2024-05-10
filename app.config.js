@@ -1,6 +1,7 @@
-{
-  "expo": {
-    "name": "retrospectapp",
+  const IS_DEV = process.env.APP_VARIANT === 'development';
+
+  export default {
+    "name": IS_DEV ? "Retrospect App (DEV)": "Retrospect App",
     "slug": "retrospectapp",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,14 +17,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.nickhumberstone.questionanswer"
+      "bundleIdentifier": IS_DEV ? "com.nickhumberstone.retrospectappdev" : "com.nickhumberstone.retrospectapp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./src/assets/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.nickhumberstone.questionanswer"
+      "package": IS_DEV ? "com.nickhumberstone.retrospectappdev": "com.nickhumberstone.retrospectapp"
     },
     "web": {
       "favicon": "./src/assets/icons/favicon.png"
@@ -46,4 +47,3 @@
       "url": "https://u.expo.dev/75d08780-7494-4738-97d1-19856d9d0675"
     }
   }
-}
