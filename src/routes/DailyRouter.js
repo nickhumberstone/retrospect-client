@@ -32,15 +32,12 @@ useFocusEffect(
 
    return (
         <>
-
         {/* <LoadingScreen/> */}
-
         {!loading ? 
         !answeredToday ?
             <QuestionStack setAnswered={setAnswered}/> 
             : <AnswerStack/>
         : <LoadingScreen/>}
-          {/* {!answeredToday ? <QuestionStack setAnswered={setAnswered}/> : <AnswerStack/>} */}
         </>
       );
 }

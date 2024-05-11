@@ -1,4 +1,4 @@
-import {View, Text, Image, ScrollView, TouchableOpacity} from 'react-native'
+import {View, Text, Image, ScrollView} from 'react-native'
 import { useState, useCallback } from 'react';
 import ResponseCardCommunity from '../components/ResponseCardCommunity';
 import { useAuth0 } from 'react-native-auth0';
