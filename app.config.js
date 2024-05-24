@@ -24,7 +24,8 @@
         "foregroundImage": "./src/assets/icons/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": IS_DEV ? "com.nickhumberstone.retrospectappdev": "com.nickhumberstone.retrospectapp"
+      "package": IS_DEV ? "com.nickhumberstone.retrospectappdev": "com.nickhumberstone.retrospectapp",
+      "googleServicesFile": process.env.GOOGLE_SERVICES_JSON,
     },
     "web": {
       "favicon": "./src/assets/icons/favicon.png"
