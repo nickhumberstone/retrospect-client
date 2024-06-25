@@ -3,7 +3,6 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { Platform } from "react-native";
-import { response } from "express";
 
 export interface PushNotificationState {
     notification?: Notifications.Notification;
@@ -20,12 +19,12 @@ export const usePushNotifications = (): PushNotificationState => {
     })
 
     const [expoPushToken, setExpoPushToken] = useState<Notifications.ExpoPushToken | undefined>();
-
     const [notification, setNotification] = useState<Notifications.Notification | undefined>();
 
     const notificationListener = useRef<Notifications.Subscription>();
     const responseListener = useRef<Notifications.Subscription>();
 
+    // How can I make it recheck for push notifications?
     async function registerForPushNotificationsAsync() {
         let token;
 
@@ -40,12 +39,20 @@ export const usePushNotifications = (): PushNotificationState => {
                 finalStatus = status;
             }
             if (finalStatus !== "granted") {
-                alert("Failed to get push token");
+                console.log("Failed to get push token. Try again");
+                return null;
+                // setTimeout(async () => {
+                //     console.log("Retrying for push notification in 10 seconds")
+                //     const { status } = await Notifications.requestPermissionsAsync();
+                //     finalStatus = status;
+                // }, 10000);
             }
 
             token = await Notifications.getExpoPushTokenAsync({
                 projectId: Constants.expoConfig?.extra?.eas?.projectId,
             });
+
+            console.log("Notification permissions granted with token of: ", expoPushToken)
 
             if (Platform.OS === "android") {
                 Notifications.setNotificationChannelAsync("default", {
