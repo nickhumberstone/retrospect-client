@@ -8,8 +8,8 @@ export default function App() {
   const data = JSON.stringify(notification, undefined, 2);
   return (
     <Auth0Provider domain={"dev-questionanswer.uk.auth0.com"} clientId={"fQQA6iyyjMekTTCBXQ7PRTGp3CzdT4F0"}>
-      <Text>Token: {expoPushToken?.data ?? ""}</Text>
-      <Text>{data}</Text>
+      {/* <Text>Token: {expoPushToken?.data ?? ""}</Text>
+      <Text>{data}</Text> */}
       <AuthRouter />
     </Auth0Provider>
   );

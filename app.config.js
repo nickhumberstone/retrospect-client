@@ -1,4 +1,4 @@
-  const IS_DEV = process.env.APP_VARIANT === 'development';
+const IS_DEV = process.env.APP_VARIANT === 'development';
 
   export default {
     name: IS_DEV ? "*Retrospect App": "Retrospect App",
@@ -25,7 +25,7 @@
         backgroundColor: "#ffffff"
       },
       package: IS_DEV ? "com.nickhumberstone.retrospectappdev": "com.nickhumberstone.retrospectapp",
-      googleServicesFile: process.env.GOOGLE_SERVICES_JSON,
+      googleServicesFile: IS_DEV ? process.env.GOOGLE_SERVICES_DEV_JSON : process.env.GOOGLE_SERVICES_JSON,
     },
     web: {
       favicon: "./src/assets/icons/favicon.png"
