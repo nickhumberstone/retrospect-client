@@ -3,7 +3,8 @@ import { useAuth0 } from 'react-native-auth0'
 import { useState, useCallback } from 'react';
 import ResponseCardUser from '../components/ResponseCardUser';
 import DailyQuestionCard from '../components/DailyQuestionCard';
-import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import { useFocusEffect } from '@react-navigation/native';
+import { usePushNotifications } from '../../usePushNotifications';
 
 
 export default function MyAnswersScreen({navigation}) {
@@ -21,10 +22,6 @@ export default function MyAnswersScreen({navigation}) {
       }
   };
 
-  const feedback = () => {
-    useNavigation.navigate()
-  }
-
   const fetchData = async() => {
     const user_id = user.sub
         const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/myanswers?`+ new URLSearchParams({user_id : user_id}))
@@ -39,6 +36,9 @@ export default function MyAnswersScreen({navigation}) {
     fetchData();
     }, [user.sub])
   );
+
+  const {expoPushToken, notification} = usePushNotifications();
+  const tokendata = JSON.stringify(notification, undefined, 2);
 
     return (
 <ScrollView contentContainerStyle={{ minHeight: '100%' }} className="bg-white">
@@ -60,6 +60,8 @@ export default function MyAnswersScreen({navigation}) {
         <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text></TouchableOpacity>
         <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center" onPress={() => Linking.openURL(`https://humberstone.uk/contact`)}><Text>Feedback</Text></TouchableOpacity>
         </View>
+        <Text>Token: {expoPushToken?.data ?? ""}</Text>
+      <Text>{tokendata}</Text>
         </View>
       </ScrollView>
     );
