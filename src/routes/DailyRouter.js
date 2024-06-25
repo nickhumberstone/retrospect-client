@@ -4,11 +4,15 @@ import LoadingScreen from '../screens/LoadingScreen';
 import { useAuth0 } from 'react-native-auth0';
 import { useState, useCallback } from 'react';
 import { useFocusEffect } from '@react-navigation/native';
+import { usePushNotifications } from '../../usePushNotifications';
 
 export default function DailyRouter() {
 const {user} = useAuth0();
 const [answeredToday, setAnsweredToday] = useState(false);
 const [loading, setLoading] = useState(true);
+
+const {expoPushToken, notification} = usePushNotifications();
+// const data = JSON.stringify(notification, undefined, 2);
 
 // Whenever app becomes in focus, fetch the latest response for that user. Compare the timestamp to the current day to evaluate if they have answered today. Show QuestionStack if false, show Answerstack if true.
 function setAnswered(){
@@ -17,7 +21,7 @@ function setAnswered(){
 useFocusEffect(
   useCallback(() => {
     console.log("Server URL is pointing to: ",process.env.EXPO_PUBLIC_SERVER_URL)
-    checkLatestResponse();
+    checkLatestResponse()
  }, [user.sub])
 );
 
@@ -38,6 +42,8 @@ useFocusEffect(
             <QuestionStack setAnswered={setAnswered}/> 
             : <AnswerStack/>
         : <LoadingScreen/>}
+      {/* <Text>Token: {expoPushToken?.data ?? ""}</Text>
+      <Text>{data}</Text> */}
         </>
       );
 }

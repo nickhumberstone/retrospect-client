@@ -10,3 +10,9 @@ npx expo start --dev-client --tunnel
  We have our central app.js which is the app itself. Within it is a condition that checks if the user is logged in, and shows them either the app, or the login/register screens. This had the added benefit of continuing to show someone the logged in experience if the login token persists, saving them from having to log in or to view the log-in screen each time.
 
  Build with eas build --profile development (or preview)
+
+ User guide for the app
+ Once installed, these are the next steps:
+ 1. Sign in or sign up using Auth0. Your account info is specific for Retrospect.
+2. Click Complete Login on splash screen
+3. Sign in again because it doesn't update its state properly
