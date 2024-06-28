@@ -11,7 +11,7 @@ const {user} = useAuth0();
 const [answeredToday, setAnsweredToday] = useState(false);
 const [loading, setLoading] = useState(true);
 
-const {expoPushToken, notification} = usePushNotifications();
+const {expoPushToken, notification} = usePushNotifications(user);
 // const data = JSON.stringify(notification, undefined, 2);
 
 // Whenever app becomes in focus, fetch the latest response for that user. Compare the timestamp to the current day to evaluate if they have answered today. Show QuestionStack if false, show Answerstack if true.

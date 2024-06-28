@@ -11,8 +11,8 @@ export default function CommunityAnswersScreen() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchData = async(user) => {
-    console.log("dailyAnswers triggered")
+  const fetchDailyAnswers = async(user) => {
+    // console.log("Daily Answers fetch triggered")
         const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
         const answers = await response.json();
     setData(answers)
@@ -21,14 +21,12 @@ export default function CommunityAnswersScreen() {
 
   useFocusEffect(
     useCallback(() => {
-      fetchData();
+      fetchDailyAnswers();
     }, [user.sub])
   );
 
-console.log("Data is: ",data)
-console.log('Data truthiness is: ', !data)
-if (data == []) {console.log("data is blank rn")}
-if (data.length == 0){console.log("HJSIEIDJ")}
+// if (data == []) {console.log("data is blank rn")}
+// if (data.length == 0){console.log("data exists")}
 
 
     return (

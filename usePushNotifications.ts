@@ -3,13 +3,14 @@ import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { Platform } from "react-native";
+import { useAuth0 } from "react-native-auth0";
 
 export interface PushNotificationState {
     notification?: Notifications.Notification;
     expoPushToken?: Notifications.ExpoPushToken;
 }
 
-export const usePushNotifications = (): PushNotificationState => {
+export const usePushNotifications = (user): PushNotificationState => {
     Notifications.setNotificationHandler({
         handleNotification: async () => ({
             shouldPlaySound: false,
@@ -25,8 +26,9 @@ export const usePushNotifications = (): PushNotificationState => {
     const responseListener = useRef<Notifications.Subscription>();
 
     // How can I make it recheck for push notifications?
-    async function registerForPushNotificationsAsync() {
+    async function registerForPushNotificationsAsync(user) {
         let token;
+        let user_id = user.sub
 
         if (Device.isDevice) {
             const { status: existingStatus } =
@@ -62,13 +64,34 @@ export const usePushNotifications = (): PushNotificationState => {
                     lightColor: "#FF231F7C"
                 })
             }
+
+            //store push token on db
+            const storePushToken = async (user) => {
+                const data = { "user_id": user.sub, "expo_push_token": token.data }
+                await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/storeexpopushtoken`, {
+                    method: "POST",
+                    headers: {
+                        "Accept": "application/json",
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                console.log("/storeexpopushtoken: ", user.sub, " - ", token.data)
+            };
+
+            console.log("token: ", token.data)
+            console.log("user_id: ", user_id)
+            storePushToken(user);
+
             return token;
         } else {
             console.log("Error. Use a physical devices. Simulators don't work for notifications");
         }
     }
+
     useEffect(() => {
-        registerForPushNotificationsAsync().then((token) => {
+        registerForPushNotificationsAsync(user).then((token) => {
             setExpoPushToken(token);
         })
 
