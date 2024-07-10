@@ -8,7 +8,7 @@ const {user} = useAuth0();
 
   return (
         <NavigationContainer>
-          {!user ? <AuthStack /> : <DailyRouter />}
+          {!user ? <AuthStack /> : <DailyRouter user={user} />}
         </NavigationContainer>
       );
 }

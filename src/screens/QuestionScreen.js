@@ -3,12 +3,11 @@ import { useState} from 'react';
 import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 
-export default function QuestionScreen({setAnswered}) {
+export default function QuestionScreen({setAnswered}, props) {
   const [answer, setAnswer] = useState("");
-  const {user} = useAuth0()
   
   const postAnswer = async() => {
-      const data = {"user_id": user.sub, "text_content" : answer}
+      const data = {"user_id": props.user.sub, "text_content" : answer}
       await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/add`, {
         method: "POST",
         headers: {
