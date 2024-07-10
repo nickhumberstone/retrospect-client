@@ -5,15 +5,13 @@ import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 import { useFocusEffect } from '@react-navigation/native';
 
-export default function CommunityAnswersScreen() {
-  const {user} = useAuth0();
-  const user_id = user.sub;
+export default function CommunityAnswersScreen(props) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchDailyAnswers = async(user) => {
+  const fetchDailyAnswers = async() => {
     // console.log("Daily Answers fetch triggered")
-        const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyanswers?`+ new URLSearchParams({user_id : user_id}))
+        const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/dailyanswers?`+ new URLSearchParams({user_id : props.user.sub}))
         const answers = await response.json();
     setData(answers)
     setLoading(false)
@@ -22,7 +20,7 @@ export default function CommunityAnswersScreen() {
   useFocusEffect(
     useCallback(() => {
       fetchDailyAnswers();
-    }, [user.sub])
+    }, [props.user.sub])
   );
 
 // if (data == []) {console.log("data is blank rn")}
