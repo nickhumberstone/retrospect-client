@@ -1,6 +1,5 @@
 import {ScrollView, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 import { useState} from 'react';
-import { useAuth0 } from 'react-native-auth0';
 import DailyQuestionCard from '../components/DailyQuestionCard';
 
 export default function QuestionScreen({setAnswered}, props) {
