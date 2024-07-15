@@ -22,8 +22,7 @@ export default function MyAnswersScreen(props) {
   };
 
   const fetchData = async() => {
-    const user_id = 'auth0|663e6d028c9808c33cbfb0d2'
-        const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/myanswers?`+ new URLSearchParams({user_id: user_id}))
+        const response = await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/myanswers?`+ new URLSearchParams({user_id: props.user.sub}))
         const answers = await response.json();
         console.log("fetchData: ", answers)
     setData(answers)
@@ -33,7 +32,7 @@ export default function MyAnswersScreen(props) {
   useFocusEffect(
     useCallback(() => {
     fetchData();
-    }, [props.user])
+    }, [props.user.sub])
   );
 
     return (
