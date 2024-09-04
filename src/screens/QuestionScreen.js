@@ -1,10 +1,12 @@
 import {ScrollView, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 import { useState} from 'react';
 import DailyQuestionCard from '../components/DailyQuestionCard';
+import { useAuth0 } from 'react-native-auth0';
 
-export default function QuestionScreen({setAnswered}, props) {
+
+export default function QuestionScreen(props) {
   const [answer, setAnswer] = useState("");
-  
+  console.log("user is: ", props.user)
   const postAnswer = async() => {
       const data = {"user_id": props.user.sub, "text_content" : answer}
       await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/add`, {
@@ -15,9 +17,18 @@ export default function QuestionScreen({setAnswered}, props) {
         },
         body: JSON.stringify(data)
       });
-      setAnswered();
+      props.setAnswered();
      console.log("/addAnswer: " + JSON.stringify(data))
     };
+
+    const {clearSession} = useAuth0();
+    const logout = async () => {
+      try {
+          await clearSession();
+      } catch (e) {
+          console.log(e);
+      }
+  };
 
     return (
 <ScrollView keyboardShouldPersistTaps={'handled'} className="bg-white">
@@ -40,7 +51,10 @@ export default function QuestionScreen({setAnswered}, props) {
       </TouchableOpacity>
     </View>
     <Text className="pt-1 px-1 text-gray-500 text-sm text-center">Answer the question above see your previous answers, and answers from the community. Your answer must be 140 characters of less.</Text>
-  </View>
+    <Text>{props.user} is user</Text>
+    <TouchableOpacity className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center" onPress={logout}><Text>Log Out</Text>
+    </TouchableOpacity>
+    </View>
 </ScrollView>
     );
   }

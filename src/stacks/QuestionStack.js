@@ -1,7 +1,8 @@
 import QuestionScreen from '../screens/QuestionScreen';
 
-export default function QuestionStack({setAnswered}) {
+export default function QuestionStack(props ) {
+  console.log("QStack props - ",props)
   return (
-    <QuestionScreen setAnswered={setAnswered}/>    
+    <QuestionScreen setAnswered={props.setAnswered}/>    
   );
 }
