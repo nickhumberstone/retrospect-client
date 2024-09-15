@@ -1,5 +1,6 @@
 {
   "cli": {
+    "appVersionSource": "remote",
     "version": ">= 7.3.0"
   },
   "build": {
@@ -28,7 +29,8 @@
       "env": {
         "EXPO_PUBLIC_SERVER_URL": "https://retrospectapp-e8b77fc01179.herokuapp.com"
       },
-      "channel": "production"
+      "channel": "production",
+      "autoIncrement": true
     }
   },
   "submit": {
