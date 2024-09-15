@@ -42,7 +42,7 @@ export default function CommunityAnswersScreen(props) {
           Community Answers
         </Text>
         <Image
-          className="aspect-square h-80"
+          className="aspect-square h-60"
           source={require("../assets/images/readingmanybooks.png")}
         />
         <DailyQuestionCard />

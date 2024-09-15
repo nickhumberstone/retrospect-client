@@ -42,7 +42,7 @@ export default function QuestionScreen(props) {
     <ScrollView keyboardShouldPersistTaps={"handled"} className="bg-white">
       <View className="flex-1 flex items-center justify-center mx-6 mt-10">
         <Image
-          className="aspect-square h-80"
+          className="aspect-square h-60"
           source={require("../assets/images/writingnotes.png")}
         />
         <DailyQuestionCard />

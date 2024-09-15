@@ -16,7 +16,7 @@ export default function MyAnswersScreen(props) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const { clearSession } = useAuth0();
+  const { clearSession, user } = useAuth0();
 
   const logout = async () => {
     try {
@@ -53,7 +53,7 @@ export default function MyAnswersScreen(props) {
           My Answers
         </Text>
         <Image
-          className="aspect-square h-80"
+          className="aspect-square h-60"
           source={require("../assets/images/readingbook.png")}
         />
 
@@ -70,7 +70,7 @@ export default function MyAnswersScreen(props) {
         <View className="bg-black h-0.5 rounded-md mt-5 mb-2 w-full"></View>
         <View className="bg-[#667bb1] m-2 items-center p-2 rounded-md shadow-lg shadow-black ">
           <Text className="text-md p-1 text-white text-center">
-            Logged in as {props.sub}
+            Logged in as {user.name}
           </Text>
         </View>
         <View className="buttonContainer flex-1 flex-row mx-10">
