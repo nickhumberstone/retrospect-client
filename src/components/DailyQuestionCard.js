@@ -15,6 +15,7 @@ export default function DailyQuestionCard() {
       `${process.env.EXPO_PUBLIC_SERVER_URL}/dailyquestion`
     );
     const [output] = await response.json();
+    console.log("Daily Question = ", output);
     setQuestion(output.dailyQuestion);
     setLoading(false);
   };

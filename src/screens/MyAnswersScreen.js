@@ -59,7 +59,7 @@ export default function MyAnswersScreen(props) {
 
         <DailyQuestionCard />
         {loading && <Text className="text-center">Responses are loading!</Text>}
-        {data &&
+        {data !== "undefined" &&
           data.map((e) => (
             <ResponseCardUser
               response={e.text_content}

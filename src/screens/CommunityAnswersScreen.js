@@ -6,7 +6,10 @@ import DailyQuestionCard from "../components/DailyQuestionCard";
 import { useFocusEffect } from "@react-navigation/native";
 
 export default function CommunityAnswersScreen(props) {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    // { text_content: "a", given_name: "b", response_id: 1 },
+    // { text_content: "a", given_name: "b", response_id: 2 },
+  ]);
   const [loading, setLoading] = useState(true);
 
   const fetchDailyAnswers = async () => {
@@ -44,7 +47,7 @@ export default function CommunityAnswersScreen(props) {
         />
         <DailyQuestionCard />
         {loading && <Text className="text-center">Responses are loading!</Text>}
-        {data &&
+        {data == "undefined" &&
           data.map((e) => (
             <ResponseCardCommunity
               response={e.text_content}

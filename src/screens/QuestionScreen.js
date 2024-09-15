@@ -12,7 +12,9 @@ import { useAuth0 } from "react-native-auth0";
 
 export default function QuestionScreen(props) {
   const [answer, setAnswer] = useState("");
-  console.log("sub is: ", props.sub);
+
+  console.log("QScreen - Sub: ", props.sub);
+
   const postAnswer = async () => {
     const data = { user_id: props.sub, text_content: answer };
     await fetch(`${process.env.EXPO_PUBLIC_SERVER_URL}/add`, {

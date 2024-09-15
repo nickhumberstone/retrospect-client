@@ -8,11 +8,10 @@ import { usePushNotifications } from "../../usePushNotifications";
 import { Text } from "react-native";
 
 export default function DailyRouter(props) {
-  console.log("DailyRouter - props: ", props);
   const [answeredToday, setAnsweredToday] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // const { expoPushToken, notification } = usePushNotifications(props.user);
+  const { expoPushToken, notification } = usePushNotifications(props.user);
 
   // const data = JSON.stringify(notification, undefined, 2);
 
@@ -31,13 +30,13 @@ export default function DailyRouter(props) {
   );
 
   const checkLatestResponse = async () => {
-    console.log("Fetching to see if user has answered today");
+    // console.log("Fetching to see if user has answered today");
     const response = await fetch(
       `${process.env.EXPO_PUBLIC_SERVER_URL}/didtheyanswertoday?` +
         // new URLSearchParams({ user_id: "auth|7C663e6d028c9808c33cbfb0d2" })
         new URLSearchParams({ user_id: props.sub })
     );
-    const answers = await response;
+    const answers = await response.json();
     console.log("DidTheyAnswerToday? ", answers);
     setAnsweredToday(answers);
     setLoading(false);
@@ -57,9 +56,7 @@ export default function DailyRouter(props) {
       ) : (
         <LoadingScreen />
       )}
-      <Text>{answeredToday ? "true" : "false"}</Text>
-      {/* <Text>Token: {expoPushToken?.data ?? ""}</Text>
-      <Text>{data}</Text> */}
+      {/* <Text>Token: {expoPushToken?.data ?? ""}</Text> */}
     </>
   );
 }
