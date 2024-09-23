@@ -66,7 +66,6 @@ export default function QuestionScreen(props) {
           Answer the question above see your previous answers, and answers from
           the community. Your answer must be 140 characters of less.
         </Text>
-        <Text>{props.sub} is user</Text>
         <TouchableOpacity
           className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center"
           onPress={logout}

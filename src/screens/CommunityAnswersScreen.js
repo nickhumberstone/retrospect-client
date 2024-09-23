@@ -47,7 +47,7 @@ export default function CommunityAnswersScreen(props) {
         />
         <DailyQuestionCard />
         {loading && <Text className="text-center">Responses are loading!</Text>}
-        {data == "undefined" &&
+        {data !== "undefined" &&
           data.map((e) => (
             <ResponseCardCommunity
               response={e.text_content}
@@ -55,15 +55,12 @@ export default function CommunityAnswersScreen(props) {
               key={e.response_id}
             />
           ))}
-
-        {data.length == 0 ? (
+        {data.length == 0 && (
           <ResponseCardCommunity
             response={
               "There are currently no responses. Please check back later."
             }
           />
-        ) : (
-          <></>
         )}
       </View>
     </ScrollView>
