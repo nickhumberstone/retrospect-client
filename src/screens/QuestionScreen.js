@@ -63,8 +63,8 @@ export default function QuestionScreen(props) {
           </TouchableOpacity>
         </View>
         <Text className="pt-1 px-1 text-gray-500 text-sm text-center">
-          Answer the question above see your previous answers, and answers from
-          the community. Your answer must be 140 characters of less.
+          Answer the question above to see your previous answers, and answers
+          from the community. Your answer must be 140 characters or less.
         </Text>
         <TouchableOpacity
           className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center"

@@ -1,11 +1,9 @@
 import AnswerStack from "../stacks/AnswerStack";
 import QuestionStack from "../stacks/QuestionStack";
 import LoadingScreen from "../screens/LoadingScreen";
-import { useAuth0 } from "react-native-auth0";
 import { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { usePushNotifications } from "../../usePushNotifications";
-import { Text } from "react-native";
 
 export default function DailyRouter(props) {
   const [answeredToday, setAnsweredToday] = useState(false);
@@ -30,10 +28,8 @@ export default function DailyRouter(props) {
   );
 
   const checkLatestResponse = async () => {
-    // console.log("Fetching to see if user has answered today");
     const response = await fetch(
       `${process.env.EXPO_PUBLIC_SERVER_URL}/didtheyanswertoday?` +
-        // new URLSearchParams({ user_id: "auth|7C663e6d028c9808c33cbfb0d2" })
         new URLSearchParams({ user_id: props.sub })
     );
     const answers = await response.json();

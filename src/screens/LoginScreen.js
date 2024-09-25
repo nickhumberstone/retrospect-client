@@ -30,16 +30,17 @@ export default function LoginScreen() {
             <Text className="mb-2 text-3xl text-center text-white font-bold">
               What is Retrospect?
             </Text>
-            <Text className="text-lg mb-4 text-white">
+            <Text className="text-lg mb-4 text-white text-center">
               Every day you will be asked a question.
             </Text>
-            <Text className="text-lg mb-4 text-white">
+            <Text className="text-lg mb-4 text-white text-center">
               What will your answer be?
             </Text>
 
-            <Text className="text-lg text-white">
-              You can then see responses from the community, and your previous
-              responses to the same question from the last month.
+            <Text className="text-lg text-white text-center">
+              You can then see how other members of the community have answered,
+              and compare your responses to the same question from previous
+              months.
             </Text>
           </View>
           <View className="p-2">

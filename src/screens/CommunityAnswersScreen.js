@@ -1,19 +1,14 @@
 import { View, Text, Image, ScrollView } from "react-native";
 import { useState, useCallback } from "react";
 import ResponseCardCommunity from "../components/ResponseCardCommunity";
-import { useAuth0 } from "react-native-auth0";
 import DailyQuestionCard from "../components/DailyQuestionCard";
 import { useFocusEffect } from "@react-navigation/native";
 
 export default function CommunityAnswersScreen(props) {
-  const [data, setData] = useState([
-    // { text_content: "a", given_name: "b", response_id: 1 },
-    // { text_content: "a", given_name: "b", response_id: 2 },
-  ]);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchDailyAnswers = async () => {
-    // console.log("Daily Answers fetch triggered")
     const response = await fetch(
       `${process.env.EXPO_PUBLIC_SERVER_URL}/dailyanswers?` +
         new URLSearchParams({ user_id: props.sub })
@@ -29,9 +24,6 @@ export default function CommunityAnswersScreen(props) {
     }, [props.sub])
   );
 
-  // if (data == []) {console.log("data is blank rn")}
-  // if (data.length == 0){console.log("data exists")}
-
   return (
     <ScrollView
       contentContainerStyle={{ minHeight: "100%" }}
@@ -46,7 +38,9 @@ export default function CommunityAnswersScreen(props) {
           source={require("../assets/images/readingmanybooks.png")}
         />
         <DailyQuestionCard />
-        {loading && <Text className="text-center">Responses are loading!</Text>}
+        {loading && (
+          <Text className="text-center">Responses are loading...</Text>
+        )}
         {data !== "undefined" &&
           data.map((e) => (
             <ResponseCardCommunity
@@ -58,7 +52,7 @@ export default function CommunityAnswersScreen(props) {
         {data.length == 0 && (
           <ResponseCardCommunity
             response={
-              "There are currently no responses. Please check back later."
+              "Congratulations! You're the first to respond! Please check back later to see what other people said."
             }
           />
         )}
