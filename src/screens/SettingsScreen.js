@@ -40,8 +40,8 @@ export default function MyAnswersScreen(props) {
             Settings
           </Text>
           <Image
-            className="aspect-square h-40 m-auto"
-            source={require("../assets/images/readingbook.png")}
+            className="aspect-square h-60 m-auto"
+            source={require("../assets/images/holdingform.png")}
           />
           <View className="bg-[#667bb1] my-4 items-center p-2 w-full rounded-md shadow-lg shadow-black ">
             <Text className="text-md p-1 text-white text-center">

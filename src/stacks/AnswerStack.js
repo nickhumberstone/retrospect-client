@@ -29,7 +29,7 @@ export default function AnswerStack(props) {
         name="Settings"
         children={() => <SettingsScreen sub={props.sub} />}
         options={{
-          tabBarIcon: () => <Ionicons name="book-outline" size={30} />,
+          tabBarIcon: () => <Ionicons name="settings-outline" size={30} />,
         }}
       />
     </Tab.Navigator>
