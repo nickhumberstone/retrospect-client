@@ -67,26 +67,15 @@ export default function MyAnswersScreen(props) {
               key={e.response_id}
             />
           ))}
-        <View className="bg-black h-0.5 rounded-md mt-5 mb-2 w-full"></View>
-        <View className="bg-[#667bb1] m-2 items-center p-2 rounded-md shadow-lg shadow-black ">
-          <Text className="text-md p-1 text-white text-center">
-            Logged in as {user.name}
-          </Text>
-        </View>
-        <View className="buttonContainer flex-1 flex-row mx-10">
-          <TouchableOpacity
-            className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center"
-            onPress={logout}
-          >
-            <Text>Log Out</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-1/3 h-10 justify-center items-center"
-            onPress={() => Linking.openURL(`https://humberstone.uk/contact`)}
-          >
-            <Text>Feedback</Text>
-          </TouchableOpacity>
-        </View>
+        {data.length > 1 ? (
+          <></>
+        ) : (
+          <ResponseCardUser
+            response="When you answer this question again in 28 days time, you will be
+            able to start comparing your current and previous responses"
+            date="Retrospect"
+          />
+        )}
       </View>
     </ScrollView>
   );

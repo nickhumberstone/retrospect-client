@@ -21,17 +21,15 @@ export default function DailyQuestionCard() {
   };
 
   return (
-    <KeyboardAvoidingView className="w-full py-2 mb-6 bg-[#627bb1] shadow-lg shadow-black flex rounded-xl">
-      <Text className="p-1 text-center text-white text-lg">
+    <KeyboardAvoidingView className="w-full p-4 bg-[#627bb1] shadow-lg shadow-black flex rounded-xl mb-4">
+      <Text className="pb-1 text-center text-white text-lg">
         Today's question is:
       </Text>
       {loading && (
-        <Text className="text-center text-white px-2 pb-2 text-lg">
-          ~ Loading... ~
-        </Text>
+        <Text className="text-center text-white text-lg">~ Loading... ~</Text>
       )}
       {question && (
-        <Text className="text-center text-white px-2 pb-2 text-3xl font-bold">
+        <Text className="text-center text-white text-3xl font-bold">
           {question}
         </Text>
       )}
