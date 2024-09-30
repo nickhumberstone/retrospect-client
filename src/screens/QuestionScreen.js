@@ -45,7 +45,7 @@ export default function QuestionScreen(props) {
         keyboardShouldPersistTaps={"handled"}
         className="bg-white h-screen w-screen"
       >
-        <View className="flex-1 flex items-center justify-between mx-6 mt-10">
+        <View className="flex-1 flex items-center justify-around mx-6 mt-10">
           <View></View>
           <View>
             <Image

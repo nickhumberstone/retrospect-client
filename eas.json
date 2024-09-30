@@ -17,7 +17,7 @@
     },
     "preview": {
       "env": {
-        "EXPO_PUBLIC_SERVER_URL": "http://retrospect.humberstone.uk"
+        "EXPO_PUBLIC_SERVER_URL": "https://retrospect.humberstone.uk"
       },
       "distribution": "internal",
       "android": {
@@ -27,7 +27,7 @@
     },
     "production": {
       "env": {
-        "EXPO_PUBLIC_SERVER_URL": "http://retrospect.humberstone.uk"
+        "EXPO_PUBLIC_SERVER_URL": "https://retrospect.humberstone.uk"
       },
       "channel": "production",
       "autoIncrement": true

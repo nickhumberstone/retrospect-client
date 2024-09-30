@@ -30,7 +30,12 @@ export default function DailyRouter(props) {
         new URLSearchParams({ user_id: props.sub })
     );
     const answers = await response.json();
-    console.log("DidTheyAnswerToday? ", answers);
+    console.log(
+      "DidTheyAnswerToday? ",
+      answers,
+      `${process.env.EXPO_PUBLIC_SERVER_URL}/didtheyanswertoday?` +
+        new URLSearchParams({ user_id: props.sub })
+    );
     setAnsweredToday(answers);
     setLoading(false);
   };
