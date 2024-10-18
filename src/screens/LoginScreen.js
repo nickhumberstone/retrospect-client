@@ -46,7 +46,7 @@ export default function LoginScreen() {
           <View className="p-2">
             <TouchableOpacity
               onPress={login}
-              className="px-10 py-2 m-2 bg-blue-200 rounded-lg"
+              className="px-10 h-12 py-2 m-2 bg-blue-200 rounded-lg"
             >
               <Text className="text-center text-lg">Sign in</Text>
             </TouchableOpacity>

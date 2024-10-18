@@ -53,33 +53,13 @@ export default function MyAnswersScreen(props) {
           <Text className="text-2xl text-center text-[#627bb1] font-bold p-4">
             Feedback
           </Text>
-          {/* <TouchableOpacity
-            onPress={sendFeedback}
-            className="p-2 bg-white rounded-lg flex-1 justify-center items-center"
-          >
-            <Text className="text-xl">🖊</Text>
-          </TouchableOpacity> */}
           <TouchableOpacity
-            className="mt-6 shadow-lg rounded-lg bg-blue-200 m-1 w-full p-4 justify-center items-center"
+            className="mt-6 min-h-fit shadow-lg rounded-lg bg-blue-200 m-1 w-full p-4 justify-center items-center"
             onPress={() => Linking.openURL(`mailto:nickhumberstone@gmail.com`)}
           >
             <Text className="text-black text-xl">Draft email message</Text>
           </TouchableOpacity>
-          {/* <View className="form p-4 bg-[#627bb1] shadow-lg shadow-black flex flex-row rounded-xl gap-1">
-            <TextInput
-              className="bg-blue-100 h-20 rounded-lg text-xl text-center w-4/5"
-              placeholder="Have you got some feedback?"
-              value={feedback}
-              onChangeText={setFeedback}
-              multiline={true}
-            />
-            <TouchableOpacity
-              onPress={sendFeedback}
-              className="p-2 bg-white rounded-lg flex-1 justify-center items-center"
-            >
-              <Text className="text-xl">🖊</Text>
-            </TouchableOpacity>
-          </View> */}
+          
         </View>
         <View className="footer w-full">
           <TouchableOpacity
